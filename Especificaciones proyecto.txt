@@ -1,0 +1,58 @@
+Indicaciones para proyecto:
+
+mkdir public
+
+
+crear carpeta usuarios
+medicamentos
+index en public
+server.js
+
+
+inspirar en biblioteca, se conecta a la base de datos 
+
+crear min 3 tablas
+propio crude,
+
+para todas
+crear, consultar general y id(select from y where) metodo get, actualizar, eliminar, 
+
+inicio de sesion, usuario, contraseña
+	creacion de usuarios
+	Ingreso de  usuarios
+
+		usuario - llave primaria - cedula
+		contraseña - 
+		fecha de creacion
+		correo electronico - Pendiente
+
+formulario de los medicamentos
+	consulta de medicamentos
+	creacion de medicamentos - temporal
+	
+		Id medicamentos- autoincremento - llave primaria
+		Registro invima
+		concentracion
+		presentacion
+		nombre
+		marca
+		precio
+		tipo de venta
+		
+
+Calificacion
+	consulta de calificaciones
+	crear calificaciones
+		
+		id calificaciones - llave primaria
+		usuario - foranea
+		id medicamentos - foranea
+		
+		fecha de calificacion 
+		Efectividad (1 al 10)
+		Frecuencia de ingesta del medicamento( diario, semanal, mensual, anual, rara vez)
+		Disponibilidad (facil, normal, dificil)
+		sastisfacion (1 al 10)
+		efectos secundarios ( tipicos o ninguno)
+		Observaciones 
+
