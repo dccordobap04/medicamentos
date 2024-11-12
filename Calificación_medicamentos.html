@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calificación de Medicamentos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center text-primary">Formulario de Calificación de Medicamentos</h1>
+    
+    <form>
+      <!-- Medicamento (selección de la base de datos) -->
+      <div class="mb-3">
+        <label for="medicamento" class="form-label">Medicamento</label>
+        <select class="form-select" id="medicamento" required>
+          <option selected disabled>Seleccione un medicamento</option>
+          <!-- Opciones dinámicas desde la base de datos -->
+        </select>
+      </div>
+
+      <!-- Fecha de calificación -->
+      <div class="mb-3">
+        <label for="fechaCalificacion" class="form-label">Fecha de Calificación</label>
+        <input type="date" class="form-control" id="fechaCalificacion" required>
+      </div>
+
+      <!-- Efectividad -->
+      <div class="mb-3">
+        <label for="efectividad" class="form-label">Efectividad</label>
+        <select class="form-select" id="efectividad" required>
+          <option selected disabled>Seleccione un valor</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+          <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+        </select>
+      </div>
+
+      <!-- Frecuencia de ingesta -->
+      <div class="mb-3">
+        <label for="frecuenciaIngesta" class="form-label">Frecuencia de Ingesta</label>
+        <select class="form-select" id="frecuenciaIngesta" required>
+          <option selected disabled>Seleccione una frecuencia</option>
+          <option>Diario</option><option>Semanal</option><option>Mensual</option><option>Anual</option><option>Rara vez</option>
+        </select>
+      </div>
+
+      <!-- Disponibilidad -->
+      <div class="mb-3">
+        <label for="disponibilidad" class="form-label">Disponibilidad</label>
+        <select class="form-select" id="disponibilidad" required>
+          <option selected disabled>Seleccione un valor</option>
+          <option>Fácil</option><option>Normal</option><option>Difícil</option>
+        </select>
+      </div>
+
+      <!-- Satisfacción -->
+      <div class="mb-3">
+        <label for="satisfaccion" class="form-label">Satisfacción</label>
+        <select class="form-select" id="satisfaccion" required>
+          <option selected disabled>Seleccione un valor</option>
+          <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+          <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+        </select>
+      </div>
+
+      <!-- Efectos secundarios -->
+      <div class="mb-3">
+        <label for="efectosSecundarios" class="form-label">Efectos Secundarios</label>
+        <textarea class="form-control" id="efectosSecundarios" rows="3" placeholder="Describa los efectos secundarios observados"></textarea>
+      </div>
+
+      <!-- Observaciones -->
+      <div class="mb-3">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <textarea class="form-control" id="observaciones" rows="4" placeholder="Escriba cualquier observación adicional"></textarea>
+      </div>
+
+      <!-- Botón de envío -->
+      <button type="submit" class="btn btn-primary">Enviar Calificación</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Simulación de datos traídos desde la base de datos
+    const medicamentos = [
+      { id: 1, nombre: "Paracetamol" },
+      { id: 2, nombre: "Ibuprofeno" },
+      { id: 3, nombre: "Amoxicilina" },
+      { id: 4, nombre: "Metformina" }
+    ];
+
+    // Función para llenar el campo de selección de medicamentos
+    function llenarMedicamentos() {
+      const selectMedicamento = document.getElementById('medicamento');
+      
+      medicamentos.forEach(med => {
+        const option = document.createElement('option');
+        option.value = med.id;
+        option.textContent = med.nombre;
+        selectMedicamento.appendChild(option);
+      });
+    }
+
+    // Llenar el campo de medicamentos al cargar la página
+    document.addEventListener('DOMContentLoaded', llenarMedicamentos);
+  </script>
+</body>
+</html>
