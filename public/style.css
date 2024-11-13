@@ -1,0 +1,86 @@
+/* styles.css */
+
+/* Contenedor principal que ocupa toda la pantalla */
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* Lado izquierdo con la imagen */
+.seccion-imagen {
+    background-image: url('media/login.svg');
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+
+/* Lado derecho donde está el formulario */
+.seccion-formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 100%;
+}
+
+/* Estilos del contenedor del formulario */
+.contenedor-login {
+    width: 100%;
+    max-width: 400px;
+    max-height: 90vh;
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 10px;
+    border: 2px solid #007bff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+/* Estilos de la barra superior con el nombre del sistema */
+.barra-superior {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.barra-superior h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.barra-superior p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/* Ajustamos el tamaño del texto de las etiquetas */
+.etiqueta-formulario {
+    font-size: 16px;
+}
+
+/* Espaciado adicional entre los campos */
+.espacio-secciones {
+    margin-bottom: 20px !important;
+}
+
+/* Estilos del dashboard */
+.product-card {
+    margin-bottom: 30px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
