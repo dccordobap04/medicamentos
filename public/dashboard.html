@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido - FarmaTech</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Enlace al archivo CSS centralizado -->
+    <link href="styles.css" rel="stylesheet">
+    <script src="main.js" defer></script> <!-- Incluyendo main.js -->
+</head>
+<body>
+    <div class="container p-5 bg-primary text-white">
+        <h1 class="text-center">Bienvenido a FarmaTech</h1>
+        <p class="text-center">Opiniones que mejoran tu salud</p>
+    </div>
+
+    <!-- Sección de búsqueda -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="input-group mb-4">
+                    <input type="text" id="buscarProducto" class="form-control" placeholder="Buscar medicamento..." aria-label="Buscar medicamento">
+                    <button class="btn btn-primary" onclick="buscarProducto()">Buscar</button>
+                </div>
+                <div id="mensajeBusqueda" class="text-danger"></div>
+            </div>
+        </div>
+
+        <!-- Sección de productos -->
+        <div class="row" id="listaProductos">
+                  
+         </div>
+    </div>
+    <script>
+        // Verificar si el usuario está autenticado
+        document.addEventListener('DOMContentLoaded', () => {
+            if (sessionStorage.getItem('isAuthenticated') !== 'true') {
+                // Redirige al usuario de vuelta al login si no está autenticado
+                window.location.href = 'login.html';
+            } else {
+                // Cargar los productos si el usuario está autenticado
+                cargarProductos();
+            }
+        });
+
+        // Función para cargar los productos en el contenedor #listaProductos
+        function cargarProductos() {
+            const listaProductos = document.getElementById('listaProductos');
+
+            // Productos de ejemplo que se mostrarán dinámicamente
+            const productos = [
+                { nombre: 'Acido Acetilsalicilico', img: 'media/medicamento1.JPG', id: 1 },
+                { nombre: 'Acetaminofén', img: 'media/medicamento2.jpg', id: 2 },
+                { nombre: 'Omeprazol', img: 'media/medicamento3.JPG', id: 3 },
+                { nombre: 'Loratadina', img: 'media/medicamento4.JPG', id: 4 },
+                { nombre: 'Diclofenaco', img: 'media/medicamento5.JPG', id: 5 },
+                { nombre: 'Amoxicilina', img: 'media/medicamento6.JPG', id: 6 },
+                { nombre: 'Ibuprofeno', img: 'media/medicamento7.JPG', id: 7 },
+                { nombre: 'Metoclopramida', img: 'media/medicamento8.JPG', id: 8 },
+                { nombre: 'Fluoxetina', img: 'media/medicamento9.JPG', id: 9 },
+                { nombre: 'Dipirona', img: 'media/medicamento10.JPG', id: 10 }
+            ];
+
+            // Limpia el contenedor antes de agregar los productos
+            listaProductos.innerHTML = '';
+
+            // Agrega cada producto al contenedor
+            productos.forEach(producto => {
+                const productoDiv = document.createElement('div');
+                productoDiv.classList.add('col-md-3', 'product-card');
+                productoDiv.innerHTML = `
+                    <div class="card">
+                        <img src="${producto.img}" class="card-img-top" alt="${producto.nombre}">
+                        <div class="card-body">
+                            <h5 class="card-title">${producto.nombre}</h5>
+                            <button class="btn btn-primary" onclick="calificarMedicamento('${producto.nombre}', ${producto.id})">Calificar</button>
+                        </div>
+                    </div>
+                `;
+                listaProductos.appendChild(productoDiv);
+            });
+        }
+
+
+
+        // Función para redirigir a la página de calificación con el nombre y ID del medicamento
+        function calificarMedicamento(nombreMedicamento, idMedicamento) {
+            window.location.href = `calificacion.html?medicamento=${nombreMedicamento}&id=${idMedicamento}`;
+        }
+
+        // Función para buscar productos (medicamentos)
+        function buscarProducto() {
+            const inputBusqueda = document.getElementById('buscarProducto').value.toLowerCase();
+            const productos = document.querySelectorAll('.product-card');
+            let encontrado = false;
+
+            productos.forEach(producto => {
+                const nombreProducto = producto.querySelector('.card-title').textContent.toLowerCase();
+                if (nombreProducto.includes(inputBusqueda)) {
+                    producto.style.display = 'block'; // Mostrar el producto si coincide
+                    encontrado = true;
+                } else {
+                    producto.style.display = 'none'; // Ocultar el producto si no coincide
+                }
+            });
+
+            // Mostrar mensaje si no se encontró ningún producto
+            const mensajeBusqueda = document.getElementById('mensajeBusqueda');
+            if (!encontrado) {
+                mensajeBusqueda.textContent = 'No existe ese medicamento';
+            } else {
+                mensajeBusqueda.textContent = '';
+            }
+        }
+    </script>
+</body>
+</html>

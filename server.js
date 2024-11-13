@@ -1,13 +1,13 @@
 const express = require('express');
 const mysql = require('mysql2');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
 
 // Datos de conexión a la base de datos
 const db = mysql.createConnection({
     host: 'localhost',
-    user: 'node',
-    password: 'ginapaola',
+    user: 'root',
+    password: '',
     database: 'medicamentos'
 });
 
@@ -178,6 +178,38 @@ app.delete('/usuarios/:id', (req, res) => {
     });
 });
 
+// Ruta para iniciar sesión
+app.post('/login', async (req, res) => {
+    const { identificacion, contrasena } = req.body;
+
+    // Validar que los campos no estén vacíos
+    if (!identificacion || !contrasena) {
+        return res.status(400).json({ success: false, message: 'Por favor, complete ambos campos' });
+    }
+
+    // Verificar que la cédula existe en la base de datos
+    db.query('SELECT * FROM usuarios WHERE cedula = ?', [identificacion], async (err, results) => {
+        if (err) {
+            console.error('Error al consultar usuario:', err);
+            return res.status(500).json({ success: false, message: 'Error al consultar el usuario' });
+        }
+        if (results.length === 0) {
+            return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
+        }
+
+        const usuario = results[0];
+
+        // Comparar la contraseña ingresada con la almacenada en la base de datos
+        const isMatch = await bcrypt.compare(contrasena, usuario.contrasena);
+
+        if (isMatch) {
+            return res.json({ success: true, message: 'Inicio de sesión exitoso' });
+        } else {
+            return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
+        }
+    });
+});
+
 //////////////////////////////////////////////////////////////////////////////
 // Crear un nuevo medicamento
 app.post('/medicamentos', (req, res) => {
@@ -283,3 +315,5 @@ app.delete('/calificaciones/:id', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
+app.use(express.static('public'));

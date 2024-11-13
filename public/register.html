@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - FarmaTech</title>
+    <!-- Enlace al CSS de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Enlace al archivo CSS personalizado -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="col-md-6 seccion-imagen d-none d-md-block"></div>
+        <div class="col-md-6 seccion-formulario">
+            <div class="contenedor-login">
+                <div class="barra-superior">
+                    <h1>FarmaTech</h1>
+                    <p>Opiniones que mejoran tu salud</p>
+                </div>
+                <h2 class="text-center mb-4">Crear Cuenta</h2>
+                <form id="registerForm">
+                    <div class="espacio-secciones">
+                        <label for="nombreCompleto" class="etiqueta-formulario">Nombre Completo</label>
+                        <input type="text" class="form-control" id="nombreCompleto" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="espacio-secciones">
+                        <label for="correo" class="etiqueta-formulario">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="correo" placeholder="usuario@ejemplo.com" required>
+                    </div>
+                    <div class="espacio-secciones">
+                        <label for="identificacion" class="etiqueta-formulario">Identificación Usuario</label>
+                        <input type="number" class="form-control" id="identificacion" placeholder="Ingrese su número de Identificación" required>
+                    </div>
+                    <div class="espacio-secciones">
+                        <label for="contrasena" class="etiqueta-formulario">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" placeholder="Contraseña" required>
+                    </div>
+                    <div class="espacio-secciones">
+                        <label for="confirmarContrasena" class="etiqueta-formulario">Confirmar Contraseña</label>
+                        <input type="password" class="form-control" id="confirmarContrasena" placeholder="Confirma tu contraseña" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <p>¿Ya tienes una cuenta? <a href="index.html">Inicia sesión</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="register.js"></script>  <!-- Este archivo manejará el registro -->
+</body>
+</html>
